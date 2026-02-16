@@ -41,12 +41,27 @@ Dataset taken from **PlantVillage (Apple Leaves)**:
 
 Structure:
 
-image_classification/
-└── dataset/
-├── train/
-│ ├── healthy/
-│ └── diseased/
-└── test/
+virtual-plant-care-assistance/
+│
+├── image_classification/
+│ ├── dataset/
+│ │ ├── train/
+│ │ │ ├── healthy/
+│ │ │ └── diseased/
+│ │ └── test/
+│ │
+│ └── output/
+│ ├── train_data.h5
+│ └── train_labels.h5
+│
+├── utils/
+│ └── test.py
+│
+├── full_pipeline.py
+├── test_image.py
+├── testing.ipynb
+├── requirements.txt
+└── README.md
 
 Each image is resized and processed before feature extraction.
 
