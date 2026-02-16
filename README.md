@@ -39,7 +39,7 @@ Dataset taken from **PlantVillage (Apple Leaves)**:
 - Healthy Leaves  
 - Diseased Leaves (Apple Scab, Black Rot, Cedar Apple Rust)
 
-Structure:
+## 📂 Project Structure
 
 virtual-plant-care-assistance/
 │
