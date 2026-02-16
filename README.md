@@ -141,11 +141,39 @@ Achieved approximately **97% accuracy**.
 
 ## ⚙️ How to Run
 
-### Step 1 — Create Virtual Environment
-
+# Step 0 — Go to project folder
+```bash
+cd Plant-Disease-Detection-master
+```
+# Step 1 — Create virtual environment (Python 3.7 recommended)
 ```bash
 py -3.7 -m venv plantenv
+```
+# Step 2 — Activate virtual environment
+```
 plantenv\Scripts\activate
-
-
-
+```
+# Step 3 — Upgrade pip
+```
+python -m pip install --upgrade pip
+```
+# Step 4 — Install project requirements
+```
+pip install -r requirements.txt
+```
+# Step 5 — Install remaining libraries
+```
+pip install opencv-python scikit-learn mahotas h5py seaborn matplotlib joblib
+```
+# Step 6 — Verify installation
+```
+python -c "import cv2,sklearn,mahotas,h5py; print('ALL OK')"
+```
+# Step 7 — (Optional) Test image loading
+```
+python test_image.py
+```
+# Step 8 — Run full machine learning pipeline
+```
+python full_pipeline.py
+```
