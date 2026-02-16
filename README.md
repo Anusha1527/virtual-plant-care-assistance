@@ -121,10 +121,11 @@ MinMaxScaler → Values normalized between 0 and 1.
 ### 6️⃣ Feature Storage  
 
 Saved using **HDF5** format:
+```
 image_classification/output/
 ├── train_data.h5
 └── train_labels.h5
-
+```
 
 ---
 
