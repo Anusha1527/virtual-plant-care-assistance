@@ -1,115 +1,151 @@
-# Plant disease detection
+# 🌿 Virtual Plant Care Assistance  
+### 🍃 Intelligent Plant Leaf Disease Detection using Image Processing & Machine Learning
 
-# P.s : FOR PROMISING RESULTs ON IMAGE BASED CLASSIFICATION USE DEEP LEARNING INSTEAD OF NORMAL MACHINE LEARNING ALGORITHMS.
+> An AI-powered virtual assistant that analyzes plant leaf images to detect diseases and help farmers/gardeners take early action.
 
-Plant Disease Detection is one of the mind boggling issue that exits when we talk about using Technology in Agriculture.Although researches has been done to detect weather a plant is healthy or diseased using Deep Learning and with the help of Neural Network, new techniquies are still being discovered.
+---
 
-Here is my approach for Detecting weather a plant leaf is healthy or unhealthy by utilising classical Machine Learning Algorithm , Pre-processing the data using Image Processing.
+## 🚀 Project Overview
+
+**Virtual Plant Care Assistance** is a classical Machine Learning–based system that detects whether a plant leaf is **Healthy or Diseased** using image processing and handcrafted feature extraction techniques.
+
+Instead of Deep Learning, this project focuses on:
+
+✅ Image Preprocessing  
+✅ Feature Engineering  
+✅ Traditional ML Classifiers  
+✅ Random Forest for final prediction  
+
+The goal is to provide a **lightweight, explainable, and beginner-friendly AI solution** for agriculture.
+
+---
+
+## ✨ Key Highlights
+
+🌱 Image Segmentation using HSV color space  
+📊 Global Feature Extraction (Color, Texture, Shape)  
+🧠 Multiple ML models comparison  
+🌲 Random Forest Classifier (Final Model)  
+📈 ~97% Accuracy  
+💾 Features stored using HDF5  
+🧪 End-to-end ML pipeline in Python  
+
+---
+
+## 🖼 Dataset
+
+Dataset taken from **PlantVillage (Apple Leaves)**:
+
+- Healthy Leaves  
+- Diseased Leaves (Apple Scab, Black Rot, Cedar Apple Rust)
+
+Structure:
+
+image_classification/
+└── dataset/
+├── train/
+│ ├── healthy/
+│ └── diseased/
+└── test/
+
+Each image is resized and processed before feature extraction.
+
+---
+
+## 🔬 Image Properties
+
+| Property | Value |
+|----------|------|
+| Format | JPG |
+| Size | 256 × 256 |
+| Bit Depth | 24 |
+| Resolution | 96 DPI |
+
+---
+
+## 🧩 Workflow
+
+### 1️⃣ Image Loading  
+Leaf images are read and resized.
+
+---
+
+### 2️⃣ Color Conversion  
+BGR → RGB → HSV  
+
+HSV helps separate color from intensity, improving segmentation.
+
+---
+
+### 3️⃣ Image Segmentation  
+Green & brown regions are extracted to isolate leaf area from background.
+
+---
+
+### 4️⃣ Feature Extraction  
+
+Three global descriptors are used:
+
+### 🎨 Color  
+- HSV Color Histogram  
+
+### 🧱 Texture  
+- Haralick Features  
+
+### 📐 Shape  
+- Hu Moments  
+
+All features are concatenated into a single vector.
+
+---
+
+### 5️⃣ Feature Scaling  
+
+MinMaxScaler → Values normalized between 0 and 1.
+
+---
+
+### 6️⃣ Feature Storage  
+
+Saved using **HDF5** format:
+image_classification/output/
+├── train_data.h5
+└── train_labels.h5
 
 
-## ABOUT THE DATASET
+---
 
-The dataset used for this project has been taken from Plant-Village- Dataset which can be found here https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color.
+### 7️⃣ Machine Learning Models
 
-The data used for this project is extracted from the folder named “color” which is situated in the folder named “raw” in the Github Repository. The Data fed for the modeling is of Apple Leaves.
-For training purpose the Dataset comprises of 2 folders named Diseased and Healthy which contains images of leaves with respective labels.
-The Diseased Folder contains diseased/unhealthy, affected by Apple Scab, Black Rot or Cedar Apple Rust.
-The Healthy Folder consists of Green and healthy images.
+The following classifiers are evaluated:
 
+- Logistic Regression  
+- Linear Discriminant Analysis  
+- K-Nearest Neighbors  
+- Decision Tree  
+- Random Forest  
+- Naive Bayes  
+- Support Vector Machine  
 
-## PROPERTIES OF IMAGES
+10-fold cross validation is applied.
 
-   Type of File                     :  JPG File.
+---
 
-   Dimensions                       :  256 * 256.
+### 🏆 Best Model
 
-   Width                            :  256 Pixels.
+✅ **Random Forest Classifier**
 
-   Height                           :  256 Pixels.
+Achieved approximately **97% accuracy**.
 
-   Horizontal Resolution            :  96 dpi.
+---
 
-   Vertical Resolution              :  96 dpi.
+## ⚙️ How to Run
 
-   Bit Depth                        :  24.
+### Step 1 — Create Virtual Environment
 
-## STEPS INVOLVED 
-Data Preprocessing 
-
-1 ) Load Original Image.
-A total of 800 images for each class Diseased and Healthy is fed for the machine.
-
-2) Conversion of image from RGB to BGR.
-Since Open CV (python library for Image Processing), accepts images in RGB coloring format so it needs to be converted to the original format that is BGR format.
-
-3) Conversion of image from BGR to HSV.
-The simple answer is that unlike RGB, HSV separates luma, or the image intensity, from chroma or the color information. This is very useful in many applications. For example, if you want to do histogram equalization of a color image, you probably want to do that only on the intensity component, and leave the color components alone. Otherwise you will get very strange colors.
-In computer vision you often want to separate color components from intensity for various reasons, such as robustness to lighting changes, or removing shadows.
-Note, however, that HSV is one of many color spaces that separate color from intensity (See YCbCr, Lab, etc.). HSV is often used simply because the code for converting between RGB and HSV is widely available and can also be easily implemented.
-
-4) Image Segmentation for extraction of Colors.
-In order to separate the picture of leaf from the background segmentation has to performed, The color of the leaf is extracted from the image.
-
-5) Applying Global Feature Descriptor.
-Global features are extracted from the image using three feature descriptors namely :
-
-   •	Color     : Color Channel Statistics (Mean, Standard Deviation) and Color Histogram
-
-   •	Shape    : Hu Moments, Zernike Moments
-
-   •	Texture : Haralick Texture, Local Binary Patterns (LBP)
- 
-After extracting the feature of images the features are stacked together using numpy function  “np.stack”.
-
-According to the images situated in the folder the labels are encoded in numeric format for better understanding of the machine.
-
-
-The Dataset is splitted into training and testing set with the ratio of 80/20 respectively.
-
-6) Feature Scaling
-Feature Scaling is a technique to standardize the independent features present in the data in a fixed range. It is performed during the data pre-processing to handle highly varying magnitudes or values or units. If feature scaling is not done, then a machine learning algorithm tends to weigh greater values, higher and consider smaller values as the lower values, regardless of the unit of the values. 
-
-Here, we have used Min-Max Scaler.
-This scaling brings the value between 0 and 1.
-
-7) Saving the Features.
-After features are extracted from the images they are saved in HDF5 file. The Hierarchical Data Format version 5 (HDF5), is an open source file format that supports large, complex, heterogeneous data. HDF5 uses a "file directory" like structure that allows you to organize data within the file in many different structured ways, as you might do with files on your computer.
-
-8) Modeling 
-The Model is trained over 7 machine learning models named : 
-
-   •	Logistic Regression 
-
-   •	Linear Discriminant  Analysis
-
-   •	K Nearest  Neighbours
-
-   •	Decision Trees
-
-   •	Random Forest
-
-   •	Naïve Bayes
-
-   •	Support Vector Machine 
-
-And the model is validated using 10 k fold cross validation technique.
-
-9 ) Prediction 
-The models with best performance is them trained with whole of the dataset and score for testing set is predicted using Predict function.
-
-An accuracy of 97% is achieved using Randomm Forest Classifier.
-
-## What and Where Specification
-
-Utils : Contains python file for conversion of labels of images in the train folders.
-
-Image Classification : Contains Training Dataset and the .ipynb for the Plant Disease Detection.
-
-Testing Notebook : Contains Detailed Specification of Functions applied in the leaf images.
-
-
-
-
+```bash
+py -3.7 -m venv plantenv
+plantenv\Scripts\activate
 
 
 
