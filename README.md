@@ -40,7 +40,7 @@ Dataset taken from **PlantVillage (Apple Leaves)**:
 - Diseased Leaves (Apple Scab, Black Rot, Cedar Apple Rust)
 
 ## 📂 Project Structure
-
+```
 virtual-plant-care-assistance/
 │
 ├── image_classification/
@@ -62,9 +62,7 @@ virtual-plant-care-assistance/
 ├── testing.ipynb
 ├── requirements.txt
 └── README.md
-
-Each image is resized and processed before feature extraction.
-
+```
 ---
 
 ## 🔬 Image Properties
